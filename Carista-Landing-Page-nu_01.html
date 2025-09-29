@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caritas – Loving God With Everything You've Got</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #2c1810;
+      --accent: #d4a574;
+      --light: #f5f1ed;
+      --dark: #1a0f0a;
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #2c1810 0%, #4a2c1a 100%);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(212, 165, 116, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(212, 165, 116, 0.1) 0%, transparent 50%);
+      animation: pulseGlow 8s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      padding: 40px 20px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header h2 {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 300;
+      margin-bottom: 1.5em;
+      opacity: 0.9;
+      letter-spacing: 0.02em;
+    }
+
+    header p {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      margin-bottom: 3em;
+      opacity: 0.85;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 18px 40px;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--dark);
+      box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(212, 165, 116, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-3px);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, 10px); }
+    }
+
+    .scroll-indicator::after {
+      content: '↓';
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    section {
+      padding: clamp(60px, 10vw, 120px) 20px;
+      max-width: 1200px;
+      margin: auto;
+      position: relative;
+    }
+
+    section h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      margin-bottom: 1.5em;
+      color: var(--primary);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    section p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.8;
+      color: #4a4a4a;
+      margin-bottom: 1.5em;
+    }
+
+    #about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      #about {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .book-cover {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+    }
+
+    .book-cover:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+
+    blockquote {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-style: italic;
+      margin: 3em 0;
+      padding: 40px;
+      border-left: 4px solid var(--accent);
+      background: linear-gradient(135deg, rgba(212, 165, 116, 0.05) 0%, transparent 100%);
+      border-radius: 0 15px 15px 0;
+      color: var(--primary);
+      font-weight: 300;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      margin: 40px 0;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      padding: 20px 0 20px 60px;
+      position: relative;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.6;
+      transition: var(--transition);
+    }
+
+    ul li::before {
+      content: '→';
+      position: absolute;
+      left: 20px;
+      color: var(--accent);
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+
+    ul li:hover {
+      padding-left: 70px;
+      color: var(--primary);
+    }
+
+    ul li:hover::before {
+      left: 25px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      margin: 60px 0;
+    }
+
+    .card {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+      border: 1px solid rgba(212, 165, 116, 0.1);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    }
+
+    form {
+      background: #fff;
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 40px auto;
+    }
+
+    form input {
+      width: 100%;
+      padding: 18px 24px;
+      margin: 10px 0;
+      font-size: 1rem;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    form input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.1);
+    }
+
+    form button {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    #testimonials {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: #fff;
+      border-radius: 40px;
+      padding: clamp(60px, 10vw, 100px) clamp(40px, 6vw, 80px);
+      margin: 80px 20px;
+    }
+
+    #testimonials h2 {
+      color: #fff;
+    }
+
+    #testimonials blockquote {
+      background: rgba(255, 255, 255, 0.05);
+      border-left-color: var(--accent);
+      color: #fff;
+      backdrop-filter: blur(10px);
+    }
+
+    footer {
+      background: var(--dark);
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    footer p {
+      margin: 15px 0;
+      font-size: 1rem;
+    }
+
+    .social-links {
+      margin: 30px 0;
+      font-size: 1.1rem;
+    }
+
+    .social-links a {
+      color: var(--accent);
+      text-decoration: none;
+      margin: 0 15px;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: #fff;
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, var(--accent) 0%, #e8c9a0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="hero-content">
+    <h1>Caritas</h1>
+    <h2>You Weren't Just Saved From Something — You Were Saved For Someone</h2>
+    <p>Discover the embrace of salvation. A journey from performance to presence, from belief to becoming.</p>
+    <div class="cta-buttons">
+      <a href="https://your-preorder-link.com" class="btn btn-primary">Pre-Order Now</a>
+      <a href="https://your-devotional-preview-link.com" class="btn btn-secondary">Free Devotional Preview</a>
+    </div>
+  </div>
+  <div class="scroll-indicator"></div>
+</header>
+
+<section id="about">
+  <div>
+    <img src="caritas-book-cover.png" alt="Caritas book cover by Oladele Adeleye" class="book-cover" />
+  </div>
+  <div>
+    <h2>Now that you are saved, then what?</h2>
+    <p>For many believers, giving their lives to Christ is treated as the finish line — the moment we cross from lost to found. But what if it's just the beginning?</p>
+    <p><span class="highlight">Caritas – Loving God With Everything You've Got</span> is a call to rediscover the heart of salvation. Not as escape from judgment, but as embrace into intimacy.</p>
+    <blockquote>"God doesn't want your performance. He wants your presence."</blockquote>
+  </div>
+</section>
+
+<section id="video">
+  <h2>Watch the Trailer</h2>
+  <p>Step into the heartbeat of Caritas. This short film captures the spiritual ache of the mature believer and the invitation extended to every new disciple.</p>
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/MYXmfMoZt_8"
+      title="Caritas Trailer"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<section id="benefits">
+  <h2>Inside the Journey</h2>
+  <ul>
+    <li>Reframe salvation as a beginning, not an end</li>
+    <li>Move from transactional faith to relational intimacy</li>
+    <li>Build a spiritual scaffolding for transformation</li>
+    <li>Discover the twelve privileges of salvation</li>
+    <li>Learn how to love God with everything you've got</li>
+    <li>Represent heaven on earth with clarity and conviction</li>
+  </ul>
+</section>
+
+<section id="author">
+  <div class="card">
+    <h2>Meet Oladele Adeleye</h2>
+    <p>Oladele Adeleye is a minister, teacher, and spiritual mentor whose voice blends prophetic insight with pastoral care. His passion is simple: to help people walk in the fullness of what they've received.</p>
+  </div>
+</section>
+
+<section id="bonuses">
+  <h2>Pre-Order & Receive Exclusive Gifts</h2>
+  <div class="grid">
+    <div class="card">
+      <h3 style="color: var(--accent); margin-bottom: 15px;">📖 Exclusive Devotion</h3>
+      <p>A 3-Day Devotional to deepen your journey</p>
+    </div>
+    <div class="card">
+      <h3 style="color: var(--accent); margin-bottom: 15px;">🎥 Live Q&A Access</h3>
+      <p>Join a live conversation with Oladele Adeleye</p>
+    </div>
+    <div class="card">
+      <h3 style="color: var(--accent); margin-bottom: 15px;">✍️ Signed Copy</h3>
+      <p>Limited to first 100 orders only</p>
+    </div>
+  </div>
+  <div style="text-align: center; margin-top: 40px;">
+    <a href="https://your-preorder-link.com" class="btn btn-primary">Claim Your Bonuses</a>
+  </div>
+</section>
+
+<section id="movement">
+  <h2>Let Your Salvation Speak</h2>
+  <p>Caritas is more than a book — it's a discipleship movement. Whether you're leading a church, mentoring a small group, or walking your own spiritual journey, there's a place for you here.</p>
+  <ul>
+    <li>Join the Launch Team</li>
+    <li>Download the Church Kit</li>
+    <li>Subscribe for Weekly Devotionals</li>
+    <li>Share Your Love Letter to God</li>
+  </ul>
+  <div style="text-align: center; margin-top: 40px;">
+    <a href="https://your-movement-link.com" class="btn btn-primary">Get Involved</a>
+  </div>
+</section>
+
+<section id="signup">
+  <h2 style="text-align: center;">Want to Go Deeper?</h2>
+  <p style="text-align: center;">Sign up to receive a free devotional preview, weekly reflections, and exclusive updates from Oladele Adeleye.</p>
+  <form action="https://your-email-service.com/subscribe" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <button type="submit" class="btn btn-primary">Get the Free Devotional</button>
+  </form>
+</section>
+
+<section id="testimonials">
+  <h2>What Readers Are Saying</h2>
+  <blockquote>"This book reignited my love for God."</blockquote>
+  <blockquote>"A must-read for anyone who's ever asked, 'Then what?'"</blockquote>
+  <blockquote>"Caritas helped me move from knowing about God to loving Him back."</blockquote>
+</section>
+
+<footer>
+  <div class="social-links">
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+    <a href="#">YouTube</a>
+  </div>
+  <p>Contact: hello@caritasbook.com</p>
+  <p>#CaritasBook #SavedForSomeone #LetYourSalvationSpeak</p>
+  <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.5;">© 2025 Caritas. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
